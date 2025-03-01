@@ -19,6 +19,7 @@ class ExceptionHandlerAdvice : ResponseEntityExceptionHandler() {
         return handleResponse(ex, HttpStatus.BAD_REQUEST, request);
     }
 
+
     @ExceptionHandler(NotFoundException::class)
     fun handleNotFound(ex: RuntimeException, request: WebRequest): ResponseEntity<Any> {
         return handleResponse(ex, HttpStatus.NOT_FOUND, request);
