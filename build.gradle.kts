@@ -49,6 +49,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.mockk:mockk:1.13.16")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.0") // Use the latest version
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<Test> {

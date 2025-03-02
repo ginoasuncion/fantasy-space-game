@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.motycka.edu.game.match.service.MatchServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-03-02T12:25:08" hostname="Xaviers-MacBook-Pro.local" time="0.339">
+  <properties/>
+  <testcase name="should throw exception if an error occurs during processing()" classname="com.motycka.edu.game.match.service.MatchServiceTest" time="0.339"/>
+  <system-out><![CDATA[19:25:09.059 [Test worker] INFO com.motycka.edu.game.match.service.MatchService -- Validating match request: MatchRequest(rounds=3, challengerId=char1, opponentId=char2)
+19:25:09.072 [Test worker] INFO com.motycka.edu.game.match.service.MatchService -- Match started between Char-char1 and Char-char2
+19:25:09.073 [Test worker] INFO com.motycka.edu.game.match.service.MatchService -- Round 1: Char-char1 attacks Char-char2 for 18 damage (Remaining HP: 82)
+19:25:09.073 [Test worker] INFO com.motycka.edu.game.match.service.MatchService -- Round 1: Char-char2 counterattacks Char-char1 for 18 damage (Remaining HP: 82)
+19:25:09.073 [Test worker] INFO com.motycka.edu.game.match.service.MatchService -- Round 2: Char-char1 attacks Char-char2 for 18 damage (Remaining HP: 64)
+19:25:09.073 [Test worker] INFO com.motycka.edu.game.match.service.MatchService -- Round 2: Char-char2 counterattacks Char-char1 for 18 damage (Remaining HP: 64)
+19:25:09.074 [Test worker] INFO com.motycka.edu.game.match.service.MatchService -- Round 3: Char-char1 attacks Char-char2 for 18 damage (Remaining HP: 46)
+19:25:09.074 [Test worker] INFO com.motycka.edu.game.match.service.MatchService -- Round 3: Char-char2 counterattacks Char-char1 for 18 damage (Remaining HP: 46)
+19:25:09.074 [Test worker] INFO com.motycka.edu.game.match.service.MatchService -- Match ended. Winner: Char-char1, Loser: Char-char2, Outcome: CHALLENGER_WON
+19:25:09.086 [Test worker] ERROR com.motycka.edu.game.match.service.MatchService -- Error occurred during match processing: no answer found for LeaderboardRepository(#2).updateLeaderboard(char1, char2, false) among the configured answers: ()
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/Users/ginoasuncion/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.11/f9cb566608fbac6bc7bf54901a7aa11543a989ee/byte-buddy-agent-1.14.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
