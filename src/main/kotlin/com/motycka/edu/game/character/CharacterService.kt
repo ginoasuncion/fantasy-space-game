@@ -3,6 +3,7 @@ package com.motycka.edu.game.character
 import com.motycka.edu.game.character.rest.CharacterResponse
 import com.motycka.edu.game.character.rest.CharacterRequest
 import com.motycka.edu.game.account.AccountService
+import com.motycka.edu.game.character.model.CharacterClass
 import com.motycka.edu.game.error.NotFoundException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -19,11 +20,19 @@ class CharacterService(
     private val logger: Logger = LoggerFactory.getLogger(CharacterService::class.java)
 
     /**
-     * Fetches all characters from the repository.
+     * Fetches all characters, optionally filtering by class and name.
      */
-    fun getAllCharacters(): List<CharacterResponse> {
-        logger.info("Fetching all characters")
-        return characterRepository.getAllCharacters()
+    fun getAllCharacters(characterClass: CharacterClass?, name: String?): List<CharacterResponse> {
+        logger.info("Fetching characters - Filters: class={}, name={}", characterClass, name)
+
+        return try {
+            val characters = characterRepository.getFilteredCharacters(characterClass, name)
+            logger.info("Found {} characters matching filters", characters.size)
+            characters
+        } catch (e: Exception) {
+            logger.error("Error fetching characters: {}", e.message, e)
+            throw RuntimeException("Error retrieving characters", e)
+        }
     }
 
     /**

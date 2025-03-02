@@ -36,15 +36,23 @@ class CharacterRepository(private val jdbcTemplate: JdbcTemplate) {
     }
 
     /**
-     * Retrieves all characters from the database.
+     * Retrieves all characters with optional filtering by class and name.
      */
-    fun getAllCharacters(): List<CharacterResponse> {
-        return try {
-            val sql = "SELECT * FROM character"
-            jdbcTemplate.query(sql, rowMapper)
-        } catch (e: DataAccessException) {
-            throw RuntimeException("Error fetching characters from database", e)
+    fun getFilteredCharacters(characterClass: CharacterClass?, name: String?): List<CharacterResponse> {
+        val sqlBuilder = StringBuilder("SELECT * FROM character WHERE 1=1")
+        val params = mutableListOf<Any>()
+
+        if (characterClass != null) {
+            sqlBuilder.append(" AND class = ?")
+            params.add(characterClass.name)
         }
+
+        if (!name.isNullOrBlank()) {
+            sqlBuilder.append(" AND LOWER(name) LIKE ?")
+            params.add("%${name.lowercase()}%")
+        }
+
+        return jdbcTemplate.query(sqlBuilder.toString(), rowMapper, *params.toTypedArray())
     }
 
     /**
