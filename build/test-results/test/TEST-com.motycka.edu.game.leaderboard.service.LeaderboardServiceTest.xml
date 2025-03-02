@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.motycka.edu.game.leaderboard.service.LeaderboardServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-03-02T13:02:49" hostname="Xaviers-MacBook-Pro.local" time="0.759">
+  <properties/>
+  <testcase name="updateLeaderboard should correctly call repository methods()" classname="com.motycka.edu.game.leaderboard.service.LeaderboardServiceTest" time="0.264"/>
+  <testcase name="getLeaderboard should return leaderboard results()" classname="com.motycka.edu.game.leaderboard.service.LeaderboardServiceTest" time="0.493"/>
+  <system-out><![CDATA[20:02:49.321 [Test worker] INFO com.motycka.edu.game.leaderboard.service.LeaderboardService -- Updating leaderboard - Winner: winnerId, Loser: loserId, Draw: false
+20:02:49.327 [Test worker] INFO com.motycka.edu.game.leaderboard.service.LeaderboardService -- Leaderboard updated successfully.
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/Users/ginoasuncion/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.11/f9cb566608fbac6bc7bf54901a7aa11543a989ee/byte-buddy-agent-1.14.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
