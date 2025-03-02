@@ -4,7 +4,8 @@ import com.motycka.edu.game.match.model.Round
 import com.motycka.edu.game.character.rest.CharacterResponse
 
 /**
- * Data Transfer Object for match response.
+ * Data Transfer Object (DTO) for match response.
+ * This DTO is used to send match results **back to the client**.
  */
 data class MatchResponse(
     val id: String,
@@ -12,10 +13,19 @@ data class MatchResponse(
     val opponent: MatchCharacterResponse,
     val rounds: List<Round>,
     val matchOutcome: String
-)
+) {
+    init {
+        require(id.isNotBlank()) { "Match ID cannot be empty." }
+        require(rounds.isNotEmpty()) { "A match must have at least one round." }
+        require(matchOutcome in listOf("CHALLENGER_WON", "OPPONENT_WON", "DRAW")) {
+            "Invalid match outcome: $matchOutcome"
+        }
+    }
+}
 
 /**
  * Represents a character's match-related data.
+ * This object contains details about **each character's performance** in the match.
  */
 data class MatchCharacterResponse(
     val id: String,
@@ -26,13 +36,22 @@ data class MatchCharacterResponse(
     val experienceGained: Int
 ) {
     companion object {
-        fun fromCharacterResponse(character: CharacterResponse, experienceGained: Int) = MatchCharacterResponse(
-            id = character.id,
-            name = character.name,
-            characterClass = character.characterClass.name,
-            level = character.level,
-            experienceTotal = character.experience,
-            experienceGained = experienceGained
-        )
+        /**
+         * Factory method to convert a **CharacterResponse** into **MatchCharacterResponse**.
+         * This method ensures **data consistency** when transferring match-related character data.
+         */
+        fun fromCharacterResponse(character: CharacterResponse, experienceGained: Int): MatchCharacterResponse {
+            require(character.id.isNotBlank()) { "Character ID cannot be empty." }
+            require(experienceGained >= 0) { "Experience gained cannot be negative." }
+
+            return MatchCharacterResponse(
+                id = character.id,
+                name = character.name,
+                characterClass = character.characterClass.name,
+                level = character.level,
+                experienceTotal = character.experience,
+                experienceGained = experienceGained
+            )
+        }
     }
 }
